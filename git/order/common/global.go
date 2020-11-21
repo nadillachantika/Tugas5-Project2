@@ -96,7 +96,6 @@ type InquiryRequest struct {
 	TrxID      int    `json:"trx_id"`
 	MerchantID string `json:"merchant_id"`
 	BillNo     string `json:"bill_no"`
-	Signature  string `json:"signature"`
 }
 type PaymentChannel struct {
 	PgCode string `json:"pg_code"`

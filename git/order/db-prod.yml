@@ -1,7 +1,7 @@
 #database connection settings
 Type: mysql
 #URL: devapps:devapps@(10.16.5.162:3306)/pay_aggr
-URL: root:nadipw@(localhost:3306)/pay_aggr
+URL: root:@(localhost:3306)/pay_aggr
 
 #sql commands used in application
 SQLCommand:

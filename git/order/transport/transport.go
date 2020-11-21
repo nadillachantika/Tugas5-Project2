@@ -181,13 +181,13 @@ func DecodeInquiryRequest(ctx context.Context, r *http.Request) (interface{}, er
 	//decode request body
 	body, err = ioutil.ReadAll(r.Body)
 
-	log.WithField("info", string(body[:])).Info("Decode Request FastPay API")
+	log.WithField("info", string(body[:])).Info("Decode Request FasPAy API")
 
 	if err != nil {
 		return ex.Error(err, 100).Rem("Unable to read request body"), nil
 	}
 
-	var request cm.FastPayRequest
+	var request cm.InquiryRequest
 
 	if err = json.Unmarshal(body, &request); err != nil {
 		return ex.Error(err, 100).Rem("Failed decoding json message"), nil
