@@ -76,6 +76,28 @@ type FastPayResponse struct {
 	ResponseDesc   string           `json:"response_desc"`
 }
 
+type InquiryResponse struct {
+	Response          string           `json:"response"`
+	TrxID             int              `json:"trx_id"`
+	MerchantID        string           `json:"merchant_id"`
+	PaymentChannel    []PaymentChannel `json:"payment_channel"`
+	Merchant          string           `json:"merchant"`
+	BillNo            string           `json:"bill_no"`
+	PaymentReff       string           `json:"payment_reff"`
+	PaymentDate       string           `json:"payment_date"`
+	PaymentStatusCode string           `json:"payment_status_code"`
+	PaymentStatusDesc string           `json:"payment_status_desc"`
+	ResponseCode      string           `json:"response_code"`
+	ResponseDesc      string           `json:"response_desc"`
+}
+type InquiryRequest struct {
+	Request    string `json:"request"`
+	Merchant   string `json:"merchant"`
+	TrxID      int    `json:"trx_id"`
+	MerchantID string `json:"merchant_id"`
+	BillNo     string `json:"bill_no"`
+	Signature  string `json:"signature"`
+}
 type PaymentChannel struct {
 	PgCode string `json:"pg_code"`
 	PgName string `json:"pg_name"`

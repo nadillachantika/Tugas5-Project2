@@ -48,6 +48,10 @@ func initHandlers() {
 		transport.CallEndpoint(svc), transport.DecodeCallRequest, transport.EncodeResponse,
 	))
 
+	http.Handle(fmt.Sprintf("%s/inquiry",root), httptransport.NewServer(
+		transport.InquiryEndpoint(svc), transport.DecodeInquiryRequest,transport.EncodeResponse,
+			))
+
 }
 
 var logger *log.Entry

@@ -11,7 +11,6 @@ import (
 	log "github.com/Sirupsen/logrus"
 )
 
-
 func BasicMiddleware() services.ServiceMiddleware {
 	return func(next services.PaymentServices) services.PaymentServices {
 		return BasicMiddlewareStruct{next}
@@ -23,7 +22,7 @@ type BasicMiddlewareStruct struct {
 }
 
 func (mw BasicMiddlewareStruct) OrderHandler(ctx context.Context, request cm.Message) cm.Message {
-	
+
 	defer func(begin time.Time) {
 		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("OrderHandler ends")
 	}(time.Now())
@@ -31,11 +30,11 @@ func (mw BasicMiddlewareStruct) OrderHandler(ctx context.Context, request cm.Mes
 	log.WithField("request", request).Info("OrderHandler begins")
 
 	return mw.PaymentServices.OrderHandler(ctx, request)
-	
+
 }
 
 func (mw BasicMiddlewareStruct) CustomerHandler(ctx context.Context, request cm.Customers) cm.Customers {
-	
+
 	defer func(begin time.Time) {
 		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("CustomerHandler ends")
 	}(time.Now())
@@ -43,11 +42,11 @@ func (mw BasicMiddlewareStruct) CustomerHandler(ctx context.Context, request cm.
 	log.WithField("request", request).Info("CustomerHandler begins")
 
 	return mw.PaymentServices.CustomerHandler(ctx, request)
-	
+
 }
 
 func (mw BasicMiddlewareStruct) FastPayHandler(ctx context.Context, request cm.FastPayRequest) cm.FastPayResponse {
-	
+
 	defer func(begin time.Time) {
 		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("FastPayHandler ends")
 	}(time.Now())
@@ -55,11 +54,11 @@ func (mw BasicMiddlewareStruct) FastPayHandler(ctx context.Context, request cm.F
 	log.WithField("request", request).Info("FastPayHandler begins")
 
 	return mw.PaymentServices.FastPayHandler(ctx, request)
-	
+
 }
 
 func (mw BasicMiddlewareStruct) CallHandler(ctx context.Context, request cm.FastPayRequest) cm.FastPayResponse {
-	
+
 	defer func(begin time.Time) {
 		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("CallHandler ends")
 	}(time.Now())
@@ -67,5 +66,16 @@ func (mw BasicMiddlewareStruct) CallHandler(ctx context.Context, request cm.Fast
 	log.WithField("request", request).Info("CallHandler begins")
 
 	return mw.PaymentServices.CallHandler(ctx, request)
-	
+
+}
+func (mw BasicMiddlewareStruct) InquiryHandler(ctx context.Context, request cm.InquiryRequest) cm.InquiryResponse {
+
+	defer func(begin time.Time) {
+		log.WithField("execTime", float64(time.Since(begin).Nanoseconds())/float64(1e6)).Info("InquiryHandler ends")
+	}(time.Now())
+
+	log.WithField("request", request).Info("InquiryHandler begins")
+
+	return mw.PaymentServices.InquiryHandler(ctx, request)
+
 }

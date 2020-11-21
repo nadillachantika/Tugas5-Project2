@@ -25,9 +25,11 @@ import (
 
 //Config stores global configuration loaded from json file
 type Configuration struct {
-	ListenPort      string `yaml:"listenPort"`
-	RootURL         string `yaml:"rootUrl"`
-	RootURLBaru     string `yaml:"rootUrlBaru"`
+	ListenPort     string `yaml:"listenPort"`
+	RootURL        string `yaml:"rootUrl"`
+	RootURLBaru    string `yaml:"rootUrlBaru"`
+	RootURLProduct string `yaml:"rootUrlProduct"`
+
 	Connection struct {
 		Host     string `yaml:"host"`
 		Port     int    `yaml:"port"`
@@ -35,7 +37,7 @@ type Configuration struct {
 		User     string `yaml:"user"`
 		Database string `yaml:"database"`
 	}
-    DatabaseFile string `yaml:"databaseFile"`	
+	DatabaseFile string `yaml:"databaseFile"`
 }
 
 var Config Configuration
@@ -48,5 +50,5 @@ func LoadConfigFromFile(fn *string) {
 	}
 
 	log.Info("Loaded configs: ", Config)
-	
+
 }
