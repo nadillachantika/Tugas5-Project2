@@ -78,8 +78,8 @@ func CallEndpoint(svc services.PaymentServices) endpoint.Endpoint {
 func InquiryEndpoint(svc services.PaymentServices) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 
-		if req, ok := request.(cm.FastPayRequest); ok {
-			return svc.CallHandler(ctx, req), nil
+		if req, ok := request.(cm.InquiryRequest); ok {
+			return svc.InquiryHandler(ctx, req), nil
 		}
 		log.WithField("Error", request).Info("Request in in unkwon format")
 		return invalidRequest(), nil
